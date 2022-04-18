@@ -21,11 +21,12 @@
     "gql:cleanup": "rimraf \"src/**/*.generated.ts\""
   },
   "dependencies": {
+    "@ant-design/colors": "^6.0.0",
     "@apollo/client": "3.5.5",
-    "@chakra-ui/react": "1.8.1",
     "@emotion/react": "11",
     "@emotion/styled": "11",
     "@hookform/resolvers": "2.8.8",
+    "antd": "^4.19.5",
     "dayjs": "1.10.7",
     "framer-motion": "3.10.6",
     "graphql": "15.6.1",
