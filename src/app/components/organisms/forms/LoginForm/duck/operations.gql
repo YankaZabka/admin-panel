@@ -1,0 +1,8 @@
+query getUsersUsernames {
+  users {
+    data {
+      id
+      email
+    }
+  }
+}
