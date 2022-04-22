@@ -1,12 +1,12 @@
 import React from "react";
 import { blue } from "@ant-design/colors";
 import { Col, Row, Tabs } from "antd";
+import AlbumInfo from "../AlbumInfo";
 import PhotosTable from "../PhotosTable";
-import UserInfo from "../UserInfo";
 
 const { TabPane } = Tabs;
 
-const ShowContainer: React.FC = () => {
+const ShowPage: React.FC = () => {
   return (
     <Row
       style={{
@@ -21,7 +21,7 @@ const ShowContainer: React.FC = () => {
       <Col span={24}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Basic" key="1">
-            <UserInfo />
+            <AlbumInfo />
           </TabPane>
           <TabPane tab="Photos" key="2">
             <PhotosTable />
@@ -32,4 +32,4 @@ const ShowContainer: React.FC = () => {
   );
 };
 
-export default ShowContainer;
+export default ShowPage;
