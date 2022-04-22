@@ -1,31 +1,38 @@
 import React from "react";
-import { Button, PageHeader } from "antd";
+import { PageHeader } from "antd";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import HeaderButton from "../../atoms/HeaderButton";
 
 const Header: React.FC = () => {
   const auth: any = useAuth();
+  const navigate = useNavigate();
 
-  const onClick = () => {
+  const onLogout = () => {
     auth.logOut();
+  };
+
+  const onHome = () => {
+    navigate("/");
+  };
+
+  const onAlbums = () => {
+    navigate("albums");
   };
 
   return (
     <PageHeader
       className="site-page-header"
       title="Admin-panel"
-      extra={[
-        auth.loggedIn ? (
-          <Button
-            key="1"
-            shape="round"
-            type="primary"
-            style={{ boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}
-            onClick={onClick}
-          >
-            Log out
-          </Button>
-        ) : null,
-      ]}
+      extra={
+        auth.loggedIn
+          ? [
+              <HeaderButton title="Home" key="1" onClick={onHome} />,
+              <HeaderButton title="Albums" key="2" onClick={onAlbums} />,
+              <HeaderButton title="Log Out" key="3" onClick={onLogout} />,
+            ]
+          : null
+      }
     />
   );
 };
