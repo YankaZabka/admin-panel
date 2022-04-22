@@ -14,11 +14,16 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/molecules/Footer/Footer";
+import AdminPage from "./components/organisms/AdminPage";
 import AlbumsTable from "./components/organisms/AlbumsTable/index";
 import AnimationContainer from "./components/organisms/AnimationContainer/AnimationContainer";
 import FormContainer from "./components/organisms/FormContainer/index";
+import CreateForm from "./components/organisms/forms/CreateForm";
+import EditForm from "./components/organisms/forms/EditForm";
 import LoginForm from "./components/organisms/forms/LoginForm";
 import Header from "./components/organisms/Header/Header";
+import ShowPage from "./components/organisms/ShowPage";
+import WelcomePage from "./components/organisms/WelcomePage";
 import AuthProvider from "./contexts/providers/AuthProvider";
 import useAuth from "./hooks/useAuth";
 
@@ -87,11 +92,31 @@ const App: React.FC = () => {
                   element={
                     <PrivateRoute>
                       <AnimationContainer>
-                        <AlbumsTable />
+                        <AdminPage />
                       </AnimationContainer>
                     </PrivateRoute>
                   }
-                />
+                >
+                  <Route index element={<WelcomePage />} />
+                  <Route path="albums" element={<AlbumsTable />} />
+                  <Route
+                    path="albums/create"
+                    element={
+                      <FormContainer title="Create">
+                        <CreateForm />
+                      </FormContainer>
+                    }
+                  />
+                  <Route path="albums/:id" element={<ShowPage />} />
+                  <Route
+                    path="albums/:id/edit"
+                    element={
+                      <FormContainer title="Edit">
+                        <EditForm />
+                      </FormContainer>
+                    }
+                  />
+                </Route>
                 <Route
                   path="/login"
                   element={
