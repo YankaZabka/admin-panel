@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { Table, Space, Spin, Button } from "antd";
+import { Link } from "react-router-dom";
 import { operations, Types } from "./duck";
 
 const { Column } = Table;
@@ -59,10 +60,14 @@ const AlbumsTable: React.FC = () => {
         <Column
           title="Actions"
           key="actions"
-          render={() => (
+          render={(text, record: any) => (
             <Space size="middle">
-              <Button size="small">Show</Button>
-              <Button size="small">Edit</Button>
+              <Button size="small">
+                <Link to={`/albums/${record.id}`}>Show</Link>
+              </Button>
+              <Button size="small">
+                <Link to={`/albums/${record.id}/edit`}>Edit</Link>
+              </Button>
               <Button size="small">Delete</Button>
             </Space>
           )}
