@@ -7,6 +7,6 @@ export type GetUsersUsernamesQueryVariables = Types.Exact<{
 
 export type GetUsersUsernamesQuery = {
   users?: Types.Maybe<{
-    data?: Types.Maybe<Array<Types.Maybe<Pick<Types.User, "email">>>>;
+    data?: Types.Maybe<Array<Types.Maybe<Pick<Types.User, "id" | "email">>>>;
   }>;
 };
