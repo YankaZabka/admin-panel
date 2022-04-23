@@ -6,7 +6,7 @@ import AlbumInfo from "../AlbumInfo";
 
 const { TabPane } = Tabs;
 
-const ShowAlbumPage: React.FC = () => {
+const AlbumShowPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -42,4 +42,4 @@ const ShowAlbumPage: React.FC = () => {
   );
 };
 
-export default ShowAlbumPage;
+export default AlbumShowPage;
