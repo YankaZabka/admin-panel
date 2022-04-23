@@ -1,22 +1,41 @@
+/* eslint @typescript-eslint/no-non-null-assertion: 0 */
 import React from "react";
-import { Card, Divider, Typography } from "antd";
+import { useQuery } from "@apollo/client";
+import { Card, Divider, Spin, Typography } from "antd";
+import { useParams } from "react-router-dom";
+import { operations, Types } from "./duck";
 
 const { Text, Title } = Typography;
 
 const AlbumInfo: React.FC = () => {
+  const { id: string } = useParams();
+
+  const { data, loading } = useQuery<
+    Types.GetAlbumInfoQuery,
+    Types.GetAlbumInfoQueryVariables
+  >(operations.getAlbumInfo, {
+    variables: {
+      id: string!,
+    },
+  });
+
+  if (!data || loading) {
+    return <Spin size="large" />;
+  }
+
   return (
     <Card style={{ width: "100%", marginBottom: "20px", borderRadius: "20px" }}>
       <div style={{ width: "100%", textAlign: "center" }}>
-        <Title level={2}>UserInfo</Title>
+        <Title level={2}>{data.album?.title}</Title>
       </div>
       <Divider orientation="left">
         <Text strong>Name</Text>
       </Divider>
-      <Text italic>Leanne Graham</Text>
+      <Text italic>{data.album?.user?.name}</Text>
       <Divider orientation="left">
         <Text strong>Username</Text>
       </Divider>
-      <Text italic>Bret</Text>
+      <Text italic>{data.album?.user?.username}</Text>
     </Card>
   );
 };
