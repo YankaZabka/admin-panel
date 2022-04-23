@@ -6,23 +6,6 @@ import { operations, Types } from "./duck";
 
 const { Column } = Table;
 
-// const dataSource = [
-//     {
-//         key: '1',
-//         id: "1",
-//         title: "My album 1",
-//         username: "John",
-//         photos: "33",
-//     },
-//     {
-//         key: '2',
-//         id: "2",
-//         title: "My album 3",
-//         username: "Vasya",
-//         photos: "23",
-//     },
-// ];
-
 const AlbumsTable: React.FC = () => {
   const { data, loading } = useQuery<
     Types.GetAlbumsQuery,
