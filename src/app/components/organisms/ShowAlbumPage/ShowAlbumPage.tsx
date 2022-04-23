@@ -6,7 +6,7 @@ import PhotosTable from "../PhotosTable";
 
 const { TabPane } = Tabs;
 
-const ShowPage: React.FC = () => {
+const ShowAlbumPage: React.FC = () => {
   return (
     <Row
       style={{
@@ -16,6 +16,7 @@ const ShowPage: React.FC = () => {
         border: `1px solid ${blue[4]}`,
         borderRadius: "10px",
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        margin: "20px 0",
       }}
     >
       <Col span={24}>
@@ -32,4 +33,4 @@ const ShowPage: React.FC = () => {
   );
 };
 
-export default ShowPage;
+export default ShowAlbumPage;
