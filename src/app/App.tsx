@@ -22,6 +22,7 @@ import CreateForm from "./components/organisms/forms/CreateForm";
 import EditForm from "./components/organisms/forms/EditForm";
 import LoginForm from "./components/organisms/forms/LoginForm";
 import Header from "./components/organisms/Header/Header";
+import PhotosTable from "./components/organisms/PhotosTable";
 import ShowAlbumPage from "./components/organisms/ShowAlbumPage";
 import WelcomePage from "./components/organisms/WelcomePage";
 import AuthProvider from "./contexts/providers/AuthProvider";
@@ -107,7 +108,9 @@ const App: React.FC = () => {
                       </FormContainer>
                     }
                   />
-                  <Route path="albums/:id" element={<ShowAlbumPage />} />
+                  <Route path="albums/:id" element={<ShowAlbumPage />}>
+                    <Route path="photos" element={<PhotosTable />} />
+                  </Route>
                   <Route
                     path="albums/:id/edit"
                     element={

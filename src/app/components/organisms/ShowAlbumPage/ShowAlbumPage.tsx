@@ -1,12 +1,14 @@
 import React from "react";
 import { blue } from "@ant-design/colors";
 import { Col, Row, Tabs } from "antd";
+import { Outlet, useNavigate } from "react-router-dom";
 import AlbumInfo from "../AlbumInfo";
-import PhotosTable from "../PhotosTable";
 
 const { TabPane } = Tabs;
 
 const ShowAlbumPage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <Row
       style={{
@@ -20,12 +22,19 @@ const ShowAlbumPage: React.FC = () => {
       }}
     >
       <Col span={24}>
-        <Tabs defaultActiveKey="1">
+        <Tabs
+          defaultActiveKey="1"
+          onTabClick={(key: string) => {
+            if (key === "2") {
+              navigate(`photos`);
+            }
+          }}
+        >
           <TabPane tab="Basic" key="1">
             <AlbumInfo />
           </TabPane>
           <TabPane tab="Photos" key="2">
-            <PhotosTable />
+            <Outlet />
           </TabPane>
         </Tabs>
       </Col>
