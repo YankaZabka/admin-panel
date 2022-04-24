@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Space, Spin, Table, Image } from "antd";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { operations, Types } from "./duck";
 
 const { Column } = Table;
@@ -47,9 +47,11 @@ const PhotosTable: React.FC = () => {
       <Column
         title="Actions"
         key="actions"
-        render={() => (
+        render={(text, record: any) => (
           <Space size="middle">
-            <Button size="small">Show</Button>
+            <Button size="small">
+              <Link to={`${record.id}`}>Show</Link>
+            </Button>
           </Space>
         )}
       />
