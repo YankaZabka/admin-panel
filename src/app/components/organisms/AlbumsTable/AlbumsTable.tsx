@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, NetworkStatus } from "@apollo/client";
 import { Table, Space, Spin, Button } from "antd";
 import { Link } from "react-router-dom";
 import { operations, Types } from "./duck";
@@ -7,12 +7,16 @@ import { operations, Types } from "./duck";
 const { Column } = Table;
 
 const AlbumsTable: React.FC = () => {
-  const { data, loading } = useQuery<
+  const { data, loading, networkStatus } = useQuery<
     Types.GetAlbumsQuery,
     Types.GetAlbumsQueryVariables
-  >(operations.getAlbums);
+  >(operations.getAlbums, {
+    fetchPolicy: "network-only",
+    nextFetchPolicy: "cache-and-network",
+    notifyOnNetworkStatusChange: true,
+  });
 
-  if (!data || loading) {
+  if (!data || loading || networkStatus === NetworkStatus.refetch) {
     return <Spin size="large" />;
   }
 
