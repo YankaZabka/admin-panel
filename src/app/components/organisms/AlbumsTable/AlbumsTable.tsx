@@ -33,7 +33,7 @@ const AlbumsTable: React.FC = () => {
   return (
     <>
       <Button danger shape="round">
-        Create
+        <Link to="create">Create</Link>
       </Button>
       <Table
         dataSource={dataSource}
