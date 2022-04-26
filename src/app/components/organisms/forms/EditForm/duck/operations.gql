@@ -1,0 +1,6 @@
+mutation editAlbum($id: ID!, $input: UpdateAlbumInput!) {
+  updateAlbum(id: $id, input: $input) {
+    id
+    title
+  }
+}
