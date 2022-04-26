@@ -87,12 +87,7 @@ const CreateForm: React.FC = () => {
         </Select>
       </Form.Item>
       <Form.Item {...tailLayout}>
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ marginRight: "8px" }}
-          onClick={() => {}}
-        >
+        <Button type="primary" htmlType="submit" style={{ marginRight: "8px" }}>
           Submit
         </Button>
         <Button htmlType="button" onClick={() => navigate(-1)}>
