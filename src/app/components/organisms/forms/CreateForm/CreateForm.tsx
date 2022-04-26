@@ -76,7 +76,7 @@ const CreateForm: React.FC = () => {
         label="User"
         rules={[{ required: true }, { type: "string" }]}
       >
-        <Select placeholder="Select a user" allowClear>
+        <Select placeholder="Select a user">
           {queryData.users?.data?.map((item) => {
             return (
               <Option key={item?.id} value={item?.id}>
