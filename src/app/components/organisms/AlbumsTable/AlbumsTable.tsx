@@ -45,7 +45,7 @@ const AlbumsTable: React.FC = () => {
 
   return (
     <>
-      <Button danger shape="round">
+      <Button danger shape="round" style={{ marginTop: "10px" }}>
         <Link to="create">Create</Link>
       </Button>
       <Table
