@@ -3,6 +3,7 @@ import * as Types from "../../../../../schema.generated";
 
 export type GetAlbumPhotoInfoQueryVariables = Types.Exact<{
   id: Types.Scalars["ID"];
+  options?: Types.Maybe<Types.PageQueryOptions>;
 }>;
 
 export type GetAlbumPhotoInfoQuery = {
@@ -12,6 +13,7 @@ export type GetAlbumPhotoInfoQuery = {
         data?: Types.Maybe<
           Array<Types.Maybe<Pick<Types.Photo, "id" | "title" | "thumbnailUrl">>>
         >;
+        meta?: Types.Maybe<Pick<Types.PageMetadata, "totalCount">>;
       }>;
     }
   >;

@@ -2,13 +2,17 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Space, Spin, Table, Image } from "antd";
-import { useParams, Link } from "react-router-dom";
-import { operations, Types } from "./duck";
+import { useParams, Link, useSearchParams } from "react-router-dom";
+import { operations, Types, Utils } from "./duck";
 
 const { Column } = Table;
 
 const PhotosTable: React.FC = () => {
   const { id: string } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    page: "1",
+    size: "10",
+  });
 
   const { data, loading } = useQuery<
     Types.GetAlbumPhotoInfoQuery,
@@ -16,6 +20,12 @@ const PhotosTable: React.FC = () => {
   >(operations.getAlbumPhotoInfo, {
     variables: {
       id: string!,
+      options: {
+        paginate: {
+          page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+          limit: Utils.photoPageSizeVerification(searchParams.get("size")),
+        },
+      },
     },
   });
 
@@ -33,7 +43,24 @@ const PhotosTable: React.FC = () => {
   });
 
   return (
-    <Table dataSource={dataSource} style={{ margin: "20px 0" }}>
+    <Table
+      dataSource={dataSource}
+      style={{ margin: "20px 0" }}
+      pagination={{
+        current: searchParams.get("page")
+          ? Number(searchParams.get("page"))
+          : 1,
+        pageSize: Utils.photoPageSizeVerification(searchParams.get("size")),
+        pageSizeOptions: [10, 20, 50],
+        onChange(page, pageSize) {
+          setSearchParams({
+            page: page.toString(),
+            size: pageSize.toString(),
+          });
+        },
+        total: data.album?.photos?.meta?.totalCount ?? 100,
+      }}
+    >
       <Column title="Id" dataIndex="id" key="id" />
       <Column title="Title" dataIndex="title" key="title" />
       <Column

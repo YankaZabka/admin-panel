@@ -1,11 +1,14 @@
-query getAlbumPhotoInfo($id: ID!) {
+query getAlbumPhotoInfo($id: ID!, $options: PageQueryOptions) {
   album(id: $id) {
     id
-    photos {
+    photos(options: $options) {
       data {
         id
         title
         thumbnailUrl
+      }
+      meta {
+        totalCount
       }
     }
   }
