@@ -1,5 +1,5 @@
-query getAlbums {
-  albums {
+query getAlbums($options: PageQueryOptions) {
+  albums(options: $options) {
     data {
       id
       title
@@ -12,6 +12,9 @@ query getAlbums {
           id
         }
       }
+    }
+    meta {
+      totalCount
     }
   }
 }

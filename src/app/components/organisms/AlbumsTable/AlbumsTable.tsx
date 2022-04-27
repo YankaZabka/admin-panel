@@ -1,12 +1,17 @@
 import React from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { Table, Space, Spin, Button } from "antd";
-import { Link } from "react-router-dom";
-import { operations, Types } from "./duck";
+import { Link, useSearchParams } from "react-router-dom";
+import { operations, Types, Utils } from "./duck";
 
 const { Column } = Table;
 
 const AlbumsTable: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams({
+    page: "1",
+    size: "10",
+  });
+
   const { data, loading, networkStatus } = useQuery<
     Types.GetAlbumsQuery,
     Types.GetAlbumsQueryVariables
@@ -14,6 +19,14 @@ const AlbumsTable: React.FC = () => {
     fetchPolicy: "network-only",
     nextFetchPolicy: "cache-and-network",
     notifyOnNetworkStatusChange: true,
+    variables: {
+      options: {
+        paginate: {
+          page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
+          limit: Utils.pageSizeVerification(searchParams.get("size")),
+        },
+      },
+    },
   });
 
   if (!data || loading || networkStatus === NetworkStatus.refetch) {
@@ -39,6 +52,20 @@ const AlbumsTable: React.FC = () => {
         dataSource={dataSource}
         style={{ margin: "20px 0" }}
         scroll={{ x: true }}
+        pagination={{
+          current: searchParams.get("page")
+            ? Number(searchParams.get("page"))
+            : 1,
+          pageSize: Utils.pageSizeVerification(searchParams.get("size")),
+          pageSizeOptions: [10, 20, 50],
+          onChange(page, pageSize) {
+            setSearchParams({
+              page: page.toString(),
+              size: pageSize.toString(),
+            });
+          },
+          total: data.albums?.meta?.totalCount ?? 100,
+        }}
       >
         <Column title="Id" dataIndex="id" key="id" />
         <Column title="Title" dataIndex="title" key="title" />
