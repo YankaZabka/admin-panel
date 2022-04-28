@@ -13,17 +13,9 @@ import {
   Types as usersTypes,
   operations as usersOperations,
 } from "../CreateForm/duck";
-import { operations, Types } from "./duck";
+import { operations, Types, Constants } from "./duck";
 
 const { Option } = Select;
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const EditForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -85,7 +77,7 @@ const EditForm: React.FC = () => {
 
   return (
     <Form
-      {...layout}
+      {...Constants.layout}
       form={form}
       name="control-hooks"
       onFinish={onFinish}
@@ -121,7 +113,7 @@ const EditForm: React.FC = () => {
           })}
         </Select>
       </Form.Item>
-      <Form.Item {...tailLayout}>
+      <Form.Item {...Constants.tailLayout}>
         <Button type="primary" htmlType="submit" style={{ marginRight: "8px" }}>
           Submit
         </Button>
