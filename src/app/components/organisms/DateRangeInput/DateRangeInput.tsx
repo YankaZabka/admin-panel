@@ -1,4 +1,3 @@
-/* eslint no-alert: 0 */
 import React, { useState } from "react";
 import { notifyError } from "../../../../notify";
 import DateInput from "../../molecules/DateInput";
