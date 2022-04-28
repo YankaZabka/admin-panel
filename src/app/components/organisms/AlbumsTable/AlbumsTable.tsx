@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery, NetworkStatus } from "@apollo/client";
 import { Table, Space, Spin, Button } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
@@ -7,10 +7,14 @@ import { operations, Types, Utils } from "./duck";
 const { Column } = Table;
 
 const AlbumsTable: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams({
-    page: "1",
-    size: "10",
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearchParams({
+      page: "1",
+      size: "10",
+    });
+  }, [setSearchParams]);
 
   const { data, loading, networkStatus } = useQuery<
     Types.GetAlbumsQuery,
