@@ -18,6 +18,7 @@ import AdminPage from "./components/organisms/AdminPage";
 import AlbumShowPage from "./components/organisms/AlbumShowPage";
 import AlbumsTable from "./components/organisms/AlbumsTable/index";
 import AnimationContainer from "./components/organisms/AnimationContainer/AnimationContainer";
+import DateRangeInput from "./components/organisms/DateRangeInput";
 import FormContainer from "./components/organisms/FormContainer/index";
 import CreateForm from "./components/organisms/forms/CreateForm";
 import EditForm from "./components/organisms/forms/EditForm";
@@ -100,6 +101,16 @@ const App: React.FC = () => {
                   }
                 >
                   <Route index element={<WelcomePage />} />
+                  <Route
+                    path="dateRange"
+                    element={
+                      <AnimationContainer>
+                        <FormContainer title="Date range input">
+                          <DateRangeInput name="dateRange" label="Date range" />
+                        </FormContainer>
+                      </AnimationContainer>
+                    }
+                  />
                   <Route path="albums" element={<AlbumsTable />} />
                   <Route
                     path="albums/create"
