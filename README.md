@@ -1,40 +1,23 @@
-# Getting Started with Create React App
+# Admin panel :fire:
+Welcome to project Readme! 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo link: :paperclip:
+Access my site at [Vercel](https://admin-panel-k5xejh27w-yankazabka.vercel.app/). For login, use **'Sincere@april.biz'**  email and any password that matches the conditions of the form.
 
-## Available Scripts
+## About The App :books:
+Admin panel is an app with authentication and authorization. After authorization, several tables with cruds actions `show, edit, delete` will be available inside. Table content is loaded from [API](https://graphqlzero.almansi.me/api2).
 
-In the project directory, you can run:
+## Screenshots :camera:
 
-### `yarn setup`
+![Albums table](preview.jpg)
 
-Download graphql's schema from `REACT_APP_API_URL` and generate typings of graphql files.
+## Technologies
+I used `React`, `Typescript`, `Antd` ,`GraphQl`, `Apollo/client`, `React-router`.
 
-### `yarn start`
+## Setup :computer:
+- download or clone the repository
+- run `yarn setup`
+- download graphql's schema from `REACT_APP_API_URL` and generate typings of graphql files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-Run the server to generate typings of graphql files.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn more `React`, check out the [React Docs](https://reactjs.org/).
-
-To learn more `React Apollo`, check out the [Apollo React Docs](https://www.apollographql.com/docs/react/).
-
-To learn more `GraphQL`, check out the [GraphQL Docs](https://graphql.org/).
+## Approach :walking:
+I adopted the `DUCKS`  and `Atomic Design` folder structure for my react components.
