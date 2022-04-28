@@ -31,8 +31,7 @@ const LoginForm: React.FC = () => {
     });
 
     if (emails?.includes(values.email)) {
-      localStorage.setItem("fake-token", JSON.stringify(Date.now()));
-      auth.logIn();
+      auth.logIn(Date.now());
     } else {
       notifyError("User with this email does not exist!");
     }

@@ -13,7 +13,10 @@ const AuthProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const logIn = () => setLoggedIn(true);
+  const logIn = (token: number) => {
+    localStorage.setItem("fake-token", JSON.stringify(token));
+    setLoggedIn(true);
+  };
   const logOut = () => {
     localStorage.removeItem("fake-token");
     setLoggedIn(false);
