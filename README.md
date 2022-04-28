@@ -11,7 +11,7 @@ Admin panel is an app with authentication and authorization. After authorization
 
 ![Albums table](preview.jpg)
 
-## Technologies
+## Technologies :atom_symbol:
 I used `React`, `Typescript`, `Antd` ,`GraphQl`, `Apollo/client`, `React-router`.
 
 ## Setup :computer:
