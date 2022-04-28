@@ -1,5 +1,6 @@
 /* eslint no-alert: 0 */
 import React, { useState } from "react";
+import { notifyError } from "../../../../notify";
 import DateInput from "../../molecules/DateInput";
 
 interface Props {
@@ -35,7 +36,7 @@ const DateRangeInput: React.FC<Props> = ({ name, label, minDate, maxDate }) => {
           onChange={(date) => {
             if (endDate) {
               if (date > endDate) {
-                alert("Start value cannot be greater than end value!");
+                notifyError("Start value cannot be greater than end value!");
                 return;
               }
             }
@@ -54,7 +55,7 @@ const DateRangeInput: React.FC<Props> = ({ name, label, minDate, maxDate }) => {
           onChange={(date) => {
             if (startDate) {
               if (date < startDate) {
-                alert("End value cannot be less than start value!");
+                notifyError("End value cannot be less than start value!");
                 return;
               }
             }
