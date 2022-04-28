@@ -4,17 +4,9 @@ import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess } from "../../../../../notify";
 import { operations as albumsOperations } from "../../AlbumsTable/duck";
-import { operations, Types } from "./duck";
+import { operations, Types, Constants } from "./duck";
 
 const { Option } = Select;
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const CreateForm: React.FC = () => {
   const [form] = Form.useForm();
@@ -58,7 +50,12 @@ const CreateForm: React.FC = () => {
   };
 
   return (
-    <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+    <Form
+      {...Constants.layout}
+      form={form}
+      name="control-hooks"
+      onFinish={onFinish}
+    >
       <Form.Item
         name="title"
         label="Title"
@@ -86,7 +83,7 @@ const CreateForm: React.FC = () => {
           })}
         </Select>
       </Form.Item>
-      <Form.Item {...tailLayout}>
+      <Form.Item {...Constants.tailLayout}>
         <Button type="primary" htmlType="submit" style={{ marginRight: "8px" }}>
           Submit
         </Button>
