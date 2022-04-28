@@ -20,8 +20,8 @@ const AlbumsTable: React.FC = () => {
     Types.GetAlbumsQuery,
     Types.GetAlbumsQueryVariables
   >(operations.getAlbums, {
-    fetchPolicy: "network-only",
-    nextFetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-and-network",
+    nextFetchPolicy: "cache-first",
     notifyOnNetworkStatusChange: true,
     variables: {
       options: {

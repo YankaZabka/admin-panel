@@ -8,7 +8,6 @@ import {
   Types as albumTypes,
   operations as albumOperations,
 } from "../../AlbumInfo/duck";
-import { operations as albumsOperations } from "../../AlbumsTable/duck";
 import {
   Types as usersTypes,
   operations as usersOperations,
@@ -30,7 +29,6 @@ const EditForm: React.FC = () => {
       navigate(-1);
       notifySuccess(`Album was edited!`);
     },
-    refetchQueries: [{ query: albumsOperations.getAlbums }],
   });
 
   const { data: usersData, loading: usersLoading } = useQuery<

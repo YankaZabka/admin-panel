@@ -3,7 +3,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess } from "../../../../../notify";
-import { operations as albumsOperations } from "../../AlbumsTable/duck";
 import { operations, Types, Constants } from "./duck";
 
 const { Option } = Select;
@@ -20,7 +19,6 @@ const CreateForm: React.FC = () => {
       navigate(-1);
       notifySuccess(`Album '${data.createAlbum?.title}' was created!`);
     },
-    refetchQueries: [{ query: albumsOperations.getAlbums }],
   });
 
   const { data: queryData, loading: queryLoading } = useQuery<
