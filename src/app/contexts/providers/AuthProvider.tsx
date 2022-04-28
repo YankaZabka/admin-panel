@@ -1,17 +1,11 @@
 /* eslint react-hooks/rules-of-hooks: 0 */
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import AuthContext from "../auth";
 
 const AuthProvider: React.FC = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(
-    !!localStorage.getItem("fake-token")
+    () => !!localStorage.getItem("fake-token")
   );
-
-  useEffect(() => {
-    if (localStorage.getItem("fake-token")) {
-      setLoggedIn(true);
-    }
-  }, []);
 
   const logIn = (token: number) => {
     localStorage.setItem("fake-token", JSON.stringify(token));
@@ -22,9 +16,13 @@ const AuthProvider: React.FC = ({ children }) => {
     setLoggedIn(false);
   };
 
+  const memoContextValue = useMemo(
+    () => ({ loggedIn, logIn, logOut }),
+    [loggedIn]
+  );
+
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
+    <AuthContext.Provider value={memoContextValue}>
       {children}
     </AuthContext.Provider>
   );
