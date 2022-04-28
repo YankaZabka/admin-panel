@@ -5,7 +5,7 @@ Welcome to project Readme!
 Access my site at [Vercel](https://admin-panel-k5xejh27w-yankazabka.vercel.app/). For login, use **'Sincere@april.biz'**  email and any password that matches the conditions of the form.
 
 ## About The App :books:
-Admin panel is an app with authentication and authorization. After authorization, several tables with cruds actions `show, edit, delete` will be available inside. Table content is loaded from [API](https://graphqlzero.almansi.me/api2).
+Admin panel is an app with authentication and authorization. After authorization, several tables with cruds actions `show, edit, delete` will be available inside. Table content is loaded from [API](https://graphqlzero.almansi.me/api).
 
 ## Screenshots :camera:
 
