@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useQuery, NetworkStatus } from "@apollo/client";
-import { Table, Space, Spin, Button } from "antd";
+import { useQuery } from "@apollo/client";
+import { Table, Space, Button } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
 import { operations, Types } from "./duck";
 
@@ -16,7 +16,7 @@ const AlbumsTable: React.FC = () => {
     });
   }, [setSearchParams]);
 
-  const { data, loading, networkStatus } = useQuery<
+  const { data, loading } = useQuery<
     Types.GetAlbumsQuery,
     Types.GetAlbumsQueryVariables
   >(operations.getAlbums, {
@@ -35,11 +35,7 @@ const AlbumsTable: React.FC = () => {
     },
   });
 
-  if (!data || loading || networkStatus === NetworkStatus.refetch) {
-    return <Spin size="large" />;
-  }
-
-  const dataSource = data.albums?.data?.map((item) => {
+  const dataSource = data?.albums?.data?.map((item) => {
     return {
       key: item?.id,
       id: item?.id,
@@ -57,6 +53,7 @@ const AlbumsTable: React.FC = () => {
       <Table
         dataSource={dataSource}
         style={{ margin: "20px 0" }}
+        loading={loading}
         scroll={{ x: true }}
         pagination={{
           current: searchParams.get("page")
@@ -72,7 +69,7 @@ const AlbumsTable: React.FC = () => {
               size: pageSize.toString(),
             });
           },
-          total: data.albums?.meta?.totalCount ?? 100,
+          total: data?.albums?.meta?.totalCount ?? 100,
         }}
       >
         <Column title="Id" dataIndex="id" key="id" />

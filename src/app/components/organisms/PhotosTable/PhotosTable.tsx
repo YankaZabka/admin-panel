@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { Button, Space, Spin, Table, Image } from "antd";
+import { Button, Space, Table, Image } from "antd";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { operations, Types } from "./duck";
 
@@ -35,11 +35,7 @@ const PhotosTable: React.FC = () => {
     },
   });
 
-  if (!data || loading) {
-    return <Spin size="large" />;
-  }
-
-  const dataSource = data.album?.photos?.data?.map((item) => {
+  const dataSource = data?.album?.photos?.data?.map((item) => {
     return {
       key: item?.id,
       id: item?.id,
@@ -52,6 +48,7 @@ const PhotosTable: React.FC = () => {
     <Table
       dataSource={dataSource}
       style={{ margin: "20px 0" }}
+      loading={loading}
       pagination={{
         current: searchParams.get("page")
           ? Number(searchParams.get("page"))
@@ -66,7 +63,7 @@ const PhotosTable: React.FC = () => {
             size: pageSize.toString(),
           });
         },
-        total: data.album?.photos?.meta?.totalCount ?? 100,
+        total: data?.album?.photos?.meta?.totalCount ?? 100,
       }}
     >
       <Column title="Id" dataIndex="id" key="id" />
