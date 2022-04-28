@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Space, Spin, Table, Image } from "antd";
 import { useParams, Link, useSearchParams } from "react-router-dom";
-import { operations, Types, Utils } from "./duck";
+import { operations, Types } from "./duck";
 
 const { Column } = Table;
 
@@ -27,7 +27,9 @@ const PhotosTable: React.FC = () => {
       options: {
         paginate: {
           page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
-          limit: Utils.photoPageSizeVerification(searchParams.get("size")),
+          limit: searchParams.get("size")
+            ? Number(searchParams.get("size"))
+            : 10,
         },
       },
     },
@@ -54,7 +56,9 @@ const PhotosTable: React.FC = () => {
         current: searchParams.get("page")
           ? Number(searchParams.get("page"))
           : 1,
-        pageSize: Utils.photoPageSizeVerification(searchParams.get("size")),
+        pageSize: searchParams.get("size")
+          ? Number(searchParams.get("size"))
+          : 10,
         pageSizeOptions: [10, 20, 50],
         onChange(page, pageSize) {
           setSearchParams({
