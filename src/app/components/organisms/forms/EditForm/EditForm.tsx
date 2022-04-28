@@ -16,8 +16,13 @@ import { operations, Types, Constants } from "./duck";
 
 const { Option } = Select;
 
+interface FormValues {
+  title: string;
+  user: string;
+}
+
 const EditForm: React.FC = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<FormValues>();
   const navigate = useNavigate();
   const { id: string } = useParams();
 

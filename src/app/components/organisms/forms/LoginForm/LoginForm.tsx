@@ -6,8 +6,13 @@ import { notifyError } from "../../../../../notify";
 import useAuth from "../../../../hooks/useAuth";
 import { operations, Types } from "./duck";
 
+interface FormValues {
+  email: string;
+  password: string;
+}
+
 const LoginForm: React.FC = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<FormValues>();
   const auth: any = useAuth();
 
   const { data, loading } = useQuery<
