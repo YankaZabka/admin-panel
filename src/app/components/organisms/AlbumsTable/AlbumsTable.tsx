@@ -81,10 +81,10 @@ const AlbumsTable: React.FC = () => {
           render={(text, record: any) => (
             <Space size="middle">
               <Button size="small">
-                <Link to={`/albums/${record.id}`}>Show</Link>
+                <Link to={record.id}>Show</Link>
               </Button>
               <Button size="small">
-                <Link to={`/albums/${record.id}/edit`}>Edit</Link>
+                <Link to={`${record.id}/edit`}>Edit</Link>
               </Button>
               <Button size="small">Delete</Button>
             </Space>

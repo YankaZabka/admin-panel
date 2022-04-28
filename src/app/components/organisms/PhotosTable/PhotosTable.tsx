@@ -81,7 +81,7 @@ const PhotosTable: React.FC = () => {
         render={(text, record: any) => (
           <Space size="middle">
             <Button size="small">
-              <Link to={`${record.id}`}>Show</Link>
+              <Link to={record.id}>Show</Link>
             </Button>
           </Space>
         )}
