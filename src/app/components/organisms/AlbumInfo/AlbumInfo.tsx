@@ -8,14 +8,14 @@ import { operations, Types } from "./duck";
 const { Text, Title } = Typography;
 
 const AlbumInfo: React.FC = () => {
-  const { id: string } = useParams();
+  const { id } = useParams();
 
   const { data, loading } = useQuery<
     Types.GetAlbumInfoQuery,
     Types.GetAlbumInfoQueryVariables
   >(operations.getAlbumInfo, {
     variables: {
-      id: string!,
+      id: id!,
     },
   });
 

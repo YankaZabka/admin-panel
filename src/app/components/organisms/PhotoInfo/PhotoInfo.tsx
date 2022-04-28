@@ -8,14 +8,14 @@ import { operations, Types } from "./duck";
 const { Title } = Typography;
 
 const PhotoInfo: React.FC = () => {
-  const { id: string } = useParams();
+  const { id } = useParams();
 
   const { data, loading } = useQuery<
     Types.GetPhotoInfoQuery,
     Types.GetPhotoInfoQueryVariables
   >(operations.getPhotoInfo, {
     variables: {
-      id: string!,
+      id: id!,
     },
   });
 

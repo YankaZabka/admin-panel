@@ -8,7 +8,7 @@ import { operations, Types } from "./duck";
 const { Column } = Table;
 
 const PhotosTable: React.FC = () => {
-  const { id: string } = useParams();
+  const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const PhotosTable: React.FC = () => {
     Types.GetAlbumPhotoInfoQueryVariables
   >(operations.getAlbumPhotoInfo, {
     variables: {
-      id: string!,
+      id: id!,
       options: {
         paginate: {
           page: searchParams.get("page") ? Number(searchParams.get("page")) : 1,
