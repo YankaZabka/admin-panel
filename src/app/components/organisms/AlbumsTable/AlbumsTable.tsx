@@ -72,13 +72,13 @@ const AlbumsTable: React.FC = () => {
           total: data?.albums?.meta?.totalCount ?? 100,
         }}
       >
-        <Column title="Id" dataIndex="id" key="id" />
-        <Column title="Title" dataIndex="title" key="title" />
-        <Column title="User name" dataIndex="username" key="username" />
-        <Column title="Number of photos" dataIndex="photos" key="photos" />
+        <Column title="Id" dataIndex="id" />
+        <Column title="Title" dataIndex="title" />
+        <Column title="User name" dataIndex="username" />
+        <Column title="Number of photos" dataIndex="photos" />
         <Column
           title="Actions"
-          key="actions"
+          dataIndex="actions"
           render={(text, record: any) => (
             <Space size="middle">
               <Button size="small">

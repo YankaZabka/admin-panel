@@ -66,19 +66,18 @@ const PhotosTable: React.FC = () => {
         total: data?.album?.photos?.meta?.totalCount ?? 100,
       }}
     >
-      <Column title="Id" dataIndex="id" key="id" />
-      <Column title="Title" dataIndex="title" key="title" />
+      <Column title="Id" dataIndex="id" />
+      <Column title="Title" dataIndex="title" />
       <Column
         title="Preview"
         dataIndex="preview"
-        key="preview"
         render={(text, record: any) => (
           <Image width={50} src={record.preview} />
         )}
       />
       <Column
         title="Actions"
-        key="actions"
+        dataIndex="actions"
         render={(text, record: any) => (
           <Space size="middle">
             <Button size="small">
