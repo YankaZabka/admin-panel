@@ -1,5 +1,5 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Space, Spin, Table, Image } from "antd";
 import { useParams, Link, useSearchParams } from "react-router-dom";
@@ -9,10 +9,14 @@ const { Column } = Table;
 
 const PhotosTable: React.FC = () => {
   const { id: string } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams({
-    page: "1",
-    size: "10",
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearchParams({
+      page: "1",
+      size: "10",
+    });
+  }, [setSearchParams]);
 
   const { data, loading } = useQuery<
     Types.GetAlbumPhotoInfoQuery,
