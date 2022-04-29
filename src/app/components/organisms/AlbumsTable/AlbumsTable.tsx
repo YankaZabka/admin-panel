@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Table, Space, Button } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
+import useTablePagination from "../../../hooks/useTablePagination";
 import { operations, Types } from "./duck";
 
 const { Column } = Table;
@@ -35,6 +36,15 @@ const AlbumsTable: React.FC = () => {
     },
   });
 
+  const totalCount = data?.albums?.meta?.totalCount ?? 100;
+
+  const pagination = useTablePagination(
+    searchParams.get("page"),
+    searchParams.get("size"),
+    totalCount,
+    setSearchParams
+  );
+
   const dataSource = data?.albums?.data?.map((item) => {
     return {
       key: item?.id,
@@ -55,22 +65,7 @@ const AlbumsTable: React.FC = () => {
         style={{ margin: "20px 0" }}
         loading={loading}
         scroll={{ x: true }}
-        pagination={{
-          current: searchParams.get("page")
-            ? Number(searchParams.get("page"))
-            : 1,
-          pageSize: searchParams.get("size")
-            ? Number(searchParams.get("size"))
-            : 10,
-          pageSizeOptions: [10, 20, 50],
-          onChange(page, pageSize) {
-            setSearchParams({
-              page: page.toString(),
-              size: pageSize.toString(),
-            });
-          },
-          total: data?.albums?.meta?.totalCount ?? 100,
-        }}
+        pagination={pagination}
       >
         <Column title="Id" dataIndex="id" />
         <Column title="Title" dataIndex="title" />

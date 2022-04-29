@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Space, Table, Image } from "antd";
 import { useParams, Link, useSearchParams } from "react-router-dom";
+import useTablePagination from "../../../hooks/useTablePagination";
 import { operations, Types } from "./duck";
 
 const { Column } = Table;
@@ -44,27 +45,21 @@ const PhotosTable: React.FC = () => {
     };
   });
 
+  const totalCount = data?.album?.photos?.meta?.totalCount ?? 100;
+
+  const pagination = useTablePagination(
+    searchParams.get("page"),
+    searchParams.get("size"),
+    totalCount,
+    setSearchParams
+  );
+
   return (
     <Table
       dataSource={dataSource}
       style={{ margin: "20px 0" }}
       loading={loading}
-      pagination={{
-        current: searchParams.get("page")
-          ? Number(searchParams.get("page"))
-          : 1,
-        pageSize: searchParams.get("size")
-          ? Number(searchParams.get("size"))
-          : 10,
-        pageSizeOptions: [10, 20, 50],
-        onChange(page, pageSize) {
-          setSearchParams({
-            page: page.toString(),
-            size: pageSize.toString(),
-          });
-        },
-        total: data?.album?.photos?.meta?.totalCount ?? 100,
-      }}
+      pagination={pagination}
     >
       <Column title="Id" dataIndex="id" />
       <Column title="Title" dataIndex="title" />
