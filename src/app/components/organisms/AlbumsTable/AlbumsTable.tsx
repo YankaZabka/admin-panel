@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Table, Space, Modal } from "antd";
+import { Button, Modal } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
 import { notifySuccess } from "../../../../notify";
 import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
-import { operations, Types } from "./duck";
-
-const { Column } = Table;
+import Table from "../../atoms/Table";
+import { operations, Types, Consts } from "./duck";
 
 const AlbumsTable: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -76,38 +75,10 @@ const AlbumsTable: React.FC = () => {
       </Button>
       <Table
         dataSource={dataSource}
-        style={{ margin: "20px 0" }}
         loading={loading || deleteLoading}
-        scroll={{ x: true }}
         pagination={pagination}
-      >
-        <Column title="Id" dataIndex="id" />
-        <Column title="Title" dataIndex="title" />
-        <Column title="User name" dataIndex="username" />
-        <Column title="Number of photos" dataIndex="photos" />
-        <Column
-          title="Actions"
-          dataIndex="actions"
-          render={(text, record: any) => (
-            <Space size="middle">
-              <Button size="small">
-                <Link to={record.id}>Show</Link>
-              </Button>
-              <Button size="small">
-                <Link to={`${record.id}/edit`}>Edit</Link>
-              </Button>
-              <Button
-                size="small"
-                onClick={() => {
-                  showModal(record.id);
-                }}
-              >
-                Delete
-              </Button>
-            </Space>
-          )}
-        />
-      </Table>
+        columns={Consts.columns(showModal)}
+      />
       <Modal
         title="Delete"
         centered

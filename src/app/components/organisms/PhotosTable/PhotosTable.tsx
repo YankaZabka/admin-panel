@@ -1,12 +1,10 @@
-/* eslint @typescript-eslint/no-non-null-assertion: 0 */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { Button, Space, Table, Image } from "antd";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import useTablePagination from "../../../hooks/useTablePagination";
-import { operations, Types } from "./duck";
-
-const { Column } = Table;
+import Table from "../../atoms/Table";
+import { Consts, operations, Types } from "./duck";
 
 const PhotosTable: React.FC = () => {
   const { id } = useParams();
@@ -57,31 +55,10 @@ const PhotosTable: React.FC = () => {
   return (
     <Table
       dataSource={dataSource}
-      style={{ margin: "20px 0" }}
       loading={loading}
       pagination={pagination}
-    >
-      <Column title="Id" dataIndex="id" />
-      <Column title="Title" dataIndex="title" />
-      <Column
-        title="Preview"
-        dataIndex="preview"
-        render={(text, record: any) => (
-          <Image width={50} src={record.preview} />
-        )}
-      />
-      <Column
-        title="Actions"
-        dataIndex="actions"
-        render={(text, record: any) => (
-          <Space size="middle">
-            <Button size="small">
-              <Link to={record.id}>Show</Link>
-            </Button>
-          </Space>
-        )}
-      />
-    </Table>
+      columns={Consts.columns}
+    />
   );
 };
 
