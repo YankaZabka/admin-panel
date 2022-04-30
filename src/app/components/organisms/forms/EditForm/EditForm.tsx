@@ -1,18 +1,14 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
 import React from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import { notifySuccess } from "../../../../../notify";
-import {
-  Types as albumTypes,
-  operations as albumOperations,
-} from "../../AlbumInfo/duck";
+import useEditAlbum from "../../../../hooks/useEditAlbum";
 import {
   Types as usersTypes,
   operations as usersOperations,
 } from "../CreateForm/duck";
-import { operations, Types, Constants } from "./duck";
+import { Constants } from "./duck";
 
 const { Option } = Select;
 
@@ -24,31 +20,14 @@ interface FormValues {
 const EditForm: React.FC = () => {
   const [form] = Form.useForm<FormValues>();
   const navigate = useNavigate();
-  const { id: string } = useParams();
-
-  const [editAlbum, { loading: mutationLoading }] = useMutation<
-    Types.EditAlbumMutation,
-    Types.EditAlbumMutationVariables
-  >(operations.editAlbum, {
-    onCompleted() {
-      navigate(-1);
-      notifySuccess(`Album was edited!`);
-    },
-  });
+  const { id } = useParams();
+  const { editAlbum, albumData, mutationLoading, albumLoading } =
+    useEditAlbum(id);
 
   const { data: usersData, loading: usersLoading } = useQuery<
     usersTypes.GetUsersQuery,
     usersTypes.GetUsersQueryVariables
   >(usersOperations.getUsers);
-
-  const { data: albumData, loading: albumLoading } = useQuery<
-    albumTypes.GetAlbumInfoQuery,
-    albumTypes.GetAlbumInfoQueryVariables
-  >(albumOperations.getAlbumInfo, {
-    variables: {
-      id: string!,
-    },
-  });
 
   if (
     !usersData ||
@@ -69,7 +48,7 @@ const EditForm: React.FC = () => {
   const onFinish = (values: any) => {
     editAlbum({
       variables: {
-        id: string!,
+        id: id!,
         input: {
           title: values.title,
           userId: values.user,
