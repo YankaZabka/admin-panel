@@ -5,6 +5,7 @@ declare module "*/operations.gql" {
   const defaultDocument: DocumentNode;
   export const getAlbumInfo: DocumentNode;
   export const getAlbums: DocumentNode;
+  export const deleteAlbum: DocumentNode;
   export const getPhotoInfo: DocumentNode;
   export const getAlbumPhotoInfo: DocumentNode;
   export const getUsers: DocumentNode;

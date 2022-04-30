@@ -18,3 +18,7 @@ query getAlbums($options: PageQueryOptions) {
     }
   }
 }
+
+mutation deleteAlbum($id: ID!) {
+  deleteAlbum(id: $id)
+}

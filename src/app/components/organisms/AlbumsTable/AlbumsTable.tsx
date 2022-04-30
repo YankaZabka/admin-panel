@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { Table, Space, Button } from "antd";
+import { useMutation, useQuery } from "@apollo/client";
+import { Button, Table, Space, Modal } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
+import { notifySuccess } from "../../../../notify";
+import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
 import { operations, Types } from "./duck";
 
@@ -36,6 +38,18 @@ const AlbumsTable: React.FC = () => {
     },
   });
 
+  const [deleteAlbum, { loading: deleteLoading }] = useMutation<
+    Types.DeleteAlbumMutation,
+    Types.DeleteAlbumMutationVariables
+  >(operations.deleteAlbum, {
+    onCompleted() {
+      notifySuccess(`Album was deleted!`);
+    },
+  });
+
+  const { isModalVisible, showModal, handleOk, handleCancel } =
+    useModal(deleteAlbum);
+
   const totalCount = data?.albums?.meta?.totalCount ?? 100;
 
   const pagination = useTablePagination(
@@ -63,7 +77,7 @@ const AlbumsTable: React.FC = () => {
       <Table
         dataSource={dataSource}
         style={{ margin: "20px 0" }}
-        loading={loading}
+        loading={loading || deleteLoading}
         scroll={{ x: true }}
         pagination={pagination}
       >
@@ -82,11 +96,28 @@ const AlbumsTable: React.FC = () => {
               <Button size="small">
                 <Link to={`${record.id}/edit`}>Edit</Link>
               </Button>
-              <Button size="small">Delete</Button>
+              <Button
+                size="small"
+                onClick={() => {
+                  showModal(record.id);
+                }}
+              >
+                Delete
+              </Button>
             </Space>
           )}
         />
       </Table>
+      <Modal
+        title="Delete"
+        centered
+        confirmLoading={deleteLoading}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Are you sure?</p>
+      </Modal>
     </>
   );
 };

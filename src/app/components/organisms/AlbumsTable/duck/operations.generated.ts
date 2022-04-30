@@ -22,3 +22,9 @@ export type GetAlbumsQuery = {
     meta?: Types.Maybe<Pick<Types.PageMetadata, "totalCount">>;
   }>;
 };
+
+export type DeleteAlbumMutationVariables = Types.Exact<{
+  id: Types.Scalars["ID"];
+}>;
+
+export type DeleteAlbumMutation = Pick<Types.Mutation, "deleteAlbum">;
