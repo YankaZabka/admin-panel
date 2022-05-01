@@ -5,6 +5,7 @@ import { Button, Form, Input, Spin, Col, Row } from "antd";
 import { notifyError } from "../../../../../notify";
 import useAuth from "../../../../hooks/useAuth";
 import { operations, Types } from "./duck";
+import classes from "./LoginForm.module.css";
 
 interface FormValues {
   email: string;
@@ -82,7 +83,7 @@ const LoginForm: React.FC = () => {
           disabled={loading}
           type="primary"
           htmlType="submit"
-          style={{ width: "100%" }}
+          className={classes.logInButton}
         >
           Log in
         </Button>

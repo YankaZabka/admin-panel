@@ -1,0 +1,13 @@
+.column {
+  text-align: center;
+}
+
+.card {
+  width: 400px;
+  border-radius: 20px;
+}
+
+.titleContainer {
+  width: 100%;
+  text-align: center;
+}

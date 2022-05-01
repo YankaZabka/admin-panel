@@ -4,6 +4,7 @@ import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess } from "../../../../../notify";
 import { operations, Types, Constants } from "./duck";
+import classes from "./CreateForm.module.css";
 
 const { Option } = Select;
 
@@ -87,7 +88,11 @@ const CreateForm: React.FC = () => {
         </Select>
       </Form.Item>
       <Form.Item {...Constants.tailLayout}>
-        <Button type="primary" htmlType="submit" style={{ marginRight: "8px" }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={classes.submitButton}
+        >
           Submit
         </Button>
         <Button htmlType="button" onClick={() => navigate(-1)}>

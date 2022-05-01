@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { notifyError } from "../../../../notify";
 import DateInput from "../../molecules/DateInput";
+import classes from "./DateRangeInput.module.css";
 
 interface Props {
   name: string;
@@ -15,18 +16,10 @@ const DateRangeInput: React.FC<Props> = ({ name, label, minDate, maxDate }) => {
 
   return (
     <>
-      <label htmlFor={name} style={{ fontWeight: "bold" }}>
+      <label htmlFor={name} className={classes.label}>
         {label}
       </label>
-      <div
-        id={name}
-        style={{
-          border: "1px solid black",
-          borderRadius: "5px",
-          padding: "5px",
-          backgroundColor: "white",
-        }}
-      >
+      <div id={name} className={classes.container}>
         <DateInput
           name="startDate"
           label="Start date"

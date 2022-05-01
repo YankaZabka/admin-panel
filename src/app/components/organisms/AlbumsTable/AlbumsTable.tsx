@@ -6,6 +6,7 @@ import { notifySuccess } from "../../../../notify";
 import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
 import { operations, Types, Consts } from "./duck";
+import classes from "./AlbumsTable.module.css";
 
 const AlbumsTable: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -69,12 +70,12 @@ const AlbumsTable: React.FC = () => {
 
   return (
     <>
-      <Button danger shape="round" style={{ marginTop: "10px" }}>
+      <Button danger shape="round" className={classes.button}>
         <Link to="create">Create</Link>
       </Button>
       <Table
         dataSource={dataSource}
-        style={{ margin: "20px 0" }}
+        className={classes.table}
         loading={loading || deleteLoading}
         scroll={{ x: true }}
         pagination={pagination}

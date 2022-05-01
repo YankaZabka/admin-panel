@@ -9,6 +9,7 @@ import {
   operations as usersOperations,
 } from "../CreateForm/duck";
 import { Constants } from "./duck";
+import classes from "./EditForm.module.css";
 
 const { Option } = Select;
 
@@ -96,7 +97,11 @@ const EditForm: React.FC = () => {
         </Select>
       </Form.Item>
       <Form.Item {...Constants.tailLayout}>
-        <Button type="primary" htmlType="submit" style={{ marginRight: "8px" }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={classes.submitButton}
+        >
           Submit
         </Button>
         <Button htmlType="button" onClick={() => navigate(-1)}>

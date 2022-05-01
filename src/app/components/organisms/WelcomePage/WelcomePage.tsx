@@ -1,14 +1,15 @@
 import React from "react";
 import { Card, Col, Row, Typography } from "antd";
+import classes from "./WelcomePage.module.css";
 
 const { Text, Title } = Typography;
 
 const WelcomePage: React.FC = () => {
   return (
     <Row>
-      <Col span={24} style={{ textAlign: "center" }}>
-        <Card style={{ width: "400px", borderRadius: "20px" }}>
-          <div style={{ width: "100%", textAlign: "center" }}>
+      <Col span={24} className={classes.column}>
+        <Card className={classes.card}>
+          <div className={classes.titleContainer}>
             <Title level={3}>Welcome to Admin-panel!</Title>
           </div>
           <Text italic>You can browse through &apos;Albums&apos; page</Text>

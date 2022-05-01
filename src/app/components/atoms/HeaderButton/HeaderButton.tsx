@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "antd";
+import classes from "./HeaderButton.module.css";
 
 interface Props {
   title: string;
@@ -11,7 +12,7 @@ const HeaderButton: React.FC<Props> = ({ title, onClick }) => {
     <Button
       shape="round"
       type="primary"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}
+      className={classes.button}
       onClick={onClick}
     >
       {title}

@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Card, Divider, Spin, Typography } from "antd";
 import { useParams } from "react-router-dom";
 import { operations, Types } from "./duck";
+import classes from "./AlbumInfo.module.css";
 
 const { Text, Title } = Typography;
 
@@ -24,8 +25,8 @@ const AlbumInfo: React.FC = () => {
   }
 
   return (
-    <Card style={{ width: "100%", marginBottom: "20px", borderRadius: "20px" }}>
-      <div style={{ width: "100%", textAlign: "center" }}>
+    <Card className={classes.card}>
+      <div className={classes.titleContainer}>
         <Title level={2}>{data.album?.title}</Title>
       </div>
       <Divider orientation="left">

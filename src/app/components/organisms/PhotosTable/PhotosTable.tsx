@@ -5,6 +5,7 @@ import { Table } from "antd";
 import { useParams, useSearchParams } from "react-router-dom";
 import useTablePagination from "../../../hooks/useTablePagination";
 import { Consts, operations, Types } from "./duck";
+import classes from "./PhotoTable.module.css";
 
 const PhotosTable: React.FC = () => {
   const { id } = useParams();
@@ -55,7 +56,7 @@ const PhotosTable: React.FC = () => {
   return (
     <Table
       dataSource={dataSource}
-      style={{ margin: "20px 0" }}
+      className={classes.table}
       loading={loading}
       scroll={{ x: true }}
       pagination={pagination}
