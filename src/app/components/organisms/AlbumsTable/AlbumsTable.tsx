@@ -70,7 +70,7 @@ const AlbumsTable: React.FC = () => {
 
   return (
     <>
-      <Button danger shape="round" className={classes.button}>
+      <Button shape="round" className={classes.button}>
         <Link to="create">Create</Link>
       </Button>
       <Table
