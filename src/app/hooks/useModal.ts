@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useModal = (deleteAlbum: any) => {
+const useModal = (callBack: any) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState<string>();
 
@@ -11,7 +11,7 @@ const useModal = (deleteAlbum: any) => {
 
   const handleOk = () => {
     if (selectedAlbum) {
-      deleteAlbum({
+      callBack({
         variables: {
           id: selectedAlbum,
         },
