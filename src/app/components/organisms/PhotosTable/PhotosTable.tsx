@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import { Table } from "antd";
 import { useParams, useSearchParams } from "react-router-dom";
 import useTablePagination from "../../../hooks/useTablePagination";
-import Table from "../../atoms/Table";
 import { Consts, operations, Types } from "./duck";
 
 const PhotosTable: React.FC = () => {
@@ -55,7 +55,9 @@ const PhotosTable: React.FC = () => {
   return (
     <Table
       dataSource={dataSource}
+      style={{ margin: "20px 0" }}
       loading={loading}
+      scroll={{ x: true }}
       pagination={pagination}
       columns={Consts.columns}
     />

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Modal } from "antd";
+import { Button, Modal, Table } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
 import { notifySuccess } from "../../../../notify";
 import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
-import Table from "../../atoms/Table";
 import { operations, Types, Consts } from "./duck";
 
 const AlbumsTable: React.FC = () => {
@@ -75,7 +74,9 @@ const AlbumsTable: React.FC = () => {
       </Button>
       <Table
         dataSource={dataSource}
+        style={{ margin: "20px 0" }}
         loading={loading || deleteLoading}
+        scroll={{ x: true }}
         pagination={pagination}
         columns={Consts.columns(showModal)}
       />
