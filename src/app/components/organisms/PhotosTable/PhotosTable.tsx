@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { Table } from "antd";
 import { useParams, useSearchParams } from "react-router-dom";
 import useTablePagination from "../../../hooks/useTablePagination";
-import { Consts, operations, Types } from "./duck";
+import { Consts, operations, Types, Utils } from "./duck";
 // eslint-disable-next-line css-modules/no-unused-class
 import classes from "./PhotosTable.module.css";
 
@@ -19,7 +19,7 @@ const PhotosTable: React.FC = () => {
     });
   }, [setSearchParams]);
 
-  const { data, loading } = useQuery<
+  const { data, loading, previousData } = useQuery<
     Types.GetAlbumPhotoInfoQuery,
     Types.GetAlbumPhotoInfoQueryVariables
   >(operations.getAlbumPhotoInfo, {
@@ -36,14 +36,9 @@ const PhotosTable: React.FC = () => {
     },
   });
 
-  const dataSource = data?.album?.photos?.data?.map((item) => {
-    return {
-      key: item?.id,
-      id: item?.id,
-      title: item?.title,
-      preview: item?.thumbnailUrl,
-    };
-  });
+  const dataSource = data
+    ? Utils.buildDataSource(data)
+    : Utils.buildDataSource(previousData);
 
   const totalCount = data?.album?.photos?.meta?.totalCount ?? 100;
 

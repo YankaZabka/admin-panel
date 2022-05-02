@@ -6,7 +6,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { notifySuccess } from "../../../../notify";
 import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
-import { operations, Types, Consts } from "./duck";
+import { operations, Types, Consts, Utils } from "./duck";
 // eslint-disable-next-line css-modules/no-unused-class
 import classes from "./AlbumsTable.module.css";
 
@@ -20,7 +20,7 @@ const AlbumsTable: React.FC = () => {
     });
   }, [setSearchParams]);
 
-  const { data, loading } = useQuery<
+  const { data, loading, previousData } = useQuery<
     Types.GetAlbumsQuery,
     Types.GetAlbumsQueryVariables
   >(operations.getAlbums, {
@@ -60,15 +60,9 @@ const AlbumsTable: React.FC = () => {
     setSearchParams
   );
 
-  const dataSource = data?.albums?.data?.map((item) => {
-    return {
-      key: item?.id,
-      id: item?.id,
-      title: item?.title,
-      username: item?.user?.name,
-      photos: item?.photos?.data?.length,
-    };
-  });
+  const dataSource = data
+    ? Utils.buildDataSource(data)
+    : Utils.buildDataSource(previousData);
 
   return (
     <>
