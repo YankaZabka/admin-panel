@@ -1,7 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "react-toastify/dist/ReactToastify.css";
-import { blue } from "@ant-design/colors";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { Layout, Result, Button } from "antd";
 import {
@@ -29,6 +28,7 @@ import PhotosTable from "./components/organisms/PhotosTable";
 import WelcomePage from "./components/organisms/WelcomePage";
 import AuthProvider from "./contexts/providers/AuthProvider";
 import useAuth from "./hooks/useAuth";
+import classes from "./App.module.css";
 
 const { Content } = Layout;
 
@@ -76,19 +76,10 @@ const App: React.FC = () => {
             pauseOnHover
           />
 
-          <Layout style={{ minHeight: "100vh" }}>
+          <Layout className={classes.layout}>
             <Header />
 
-            <Content
-              className="site-layout"
-              style={{
-                padding: "0 50px",
-                backgroundColor: blue[2],
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <Content className={`site-layout ${classes.content}`}>
               <Routes>
                 <Route
                   path="/"
