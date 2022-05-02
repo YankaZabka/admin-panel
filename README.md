@@ -9,7 +9,7 @@ Admin panel is an app with authentication and authorization. After authorization
 
 ## Screenshots :camera:
 
-![Albums table](preview.jpg)
+![Albums table](preview.png)
 
 ## Technologies :atom_symbol:
 I used `React`, `Typescript`, `Antd` ,`GraphQl`, `Apollo/client`, `React-router`.
