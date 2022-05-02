@@ -17,6 +17,8 @@ const AlbumShowPage: React.FC = () => {
           onTabClick={(key: string) => {
             if (key === "2") {
               navigate(`photos`);
+            } else if (key === "1") {
+              navigate("");
             }
           }}
         >
