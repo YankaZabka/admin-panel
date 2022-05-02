@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const useModal = (callBack: any) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedAlbum, setSelectedAlbum] = useState<string>();
+  const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
 
   const showModal = (id: string) => {
     setSelectedAlbum(id);
