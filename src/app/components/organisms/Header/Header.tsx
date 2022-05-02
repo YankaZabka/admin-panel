@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  HomeOutlined,
+  PictureOutlined,
+  CalendarOutlined,
+  LoginOutlined,
+} from "@ant-design/icons/lib";
 import { PageHeader } from "antd";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
@@ -31,10 +37,30 @@ const Header: React.FC = () => {
       extra={
         auth.loggedIn
           ? [
-              <HeaderButton title="Home" key="1" onClick={onHome} />,
-              <HeaderButton title="Albums" key="2" onClick={onAlbums} />,
-              <HeaderButton title="DateRange" key="3" onClick={onDateRange} />,
-              <HeaderButton title="Log Out" key="4" onClick={onLogout} />,
+              <HeaderButton
+                title="Home"
+                key="1"
+                onClick={onHome}
+                icon={<HomeOutlined />}
+              />,
+              <HeaderButton
+                title="Albums"
+                key="2"
+                onClick={onAlbums}
+                icon={<PictureOutlined />}
+              />,
+              <HeaderButton
+                title="DateRange"
+                key="3"
+                onClick={onDateRange}
+                icon={<CalendarOutlined />}
+              />,
+              <HeaderButton
+                title="Log Out"
+                key="4"
+                onClick={onLogout}
+                icon={<LoginOutlined />}
+              />,
             ]
           : null
       }

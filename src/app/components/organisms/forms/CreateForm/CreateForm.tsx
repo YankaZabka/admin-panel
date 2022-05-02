@@ -1,4 +1,5 @@
 import React from "react";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons/lib";
 import { useMutation, useQuery } from "@apollo/client";
 import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -94,9 +95,11 @@ const CreateForm: React.FC = () => {
           className={classes.submitButton}
         >
           Submit
+          <CheckOutlined />
         </Button>
         <Button htmlType="button" onClick={() => navigate(-1)}>
           Cancel
+          <CloseOutlined />
         </Button>
       </Form.Item>
     </Form>

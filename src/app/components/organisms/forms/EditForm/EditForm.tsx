@@ -1,5 +1,6 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
 import React from "react";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons/lib";
 import { useQuery } from "@apollo/client";
 import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
@@ -103,9 +104,11 @@ const EditForm: React.FC = () => {
           className={classes.submitButton}
         >
           Submit
+          <CheckOutlined />
         </Button>
         <Button htmlType="button" onClick={() => navigate(-1)}>
           Cancel
+          <CloseOutlined />
         </Button>
       </Form.Item>
     </Form>

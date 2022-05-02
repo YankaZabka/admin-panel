@@ -1,5 +1,6 @@
 import React from "react";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { LoginOutlined } from "@ant-design/icons/lib";
 import { useQuery } from "@apollo/client";
 import { Button, Form, Input, Spin, Col, Row } from "antd";
 import { notifyError } from "../../../../../notify";
@@ -86,6 +87,7 @@ const LoginForm: React.FC = () => {
           className={classes.logInButton}
         >
           Log in
+          <LoginOutlined />
         </Button>
       </Form.Item>
     </Form>

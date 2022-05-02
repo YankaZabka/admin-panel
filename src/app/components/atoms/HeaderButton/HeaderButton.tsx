@@ -4,10 +4,11 @@ import classes from "./HeaderButton.module.css";
 
 interface Props {
   title: string;
+  icon: JSX.Element;
   onClick(): void;
 }
 
-const HeaderButton: React.FC<Props> = ({ title, onClick }) => {
+const HeaderButton: React.FC<Props> = ({ title, onClick, icon }) => {
   return (
     <Button
       shape="round"
@@ -15,6 +16,7 @@ const HeaderButton: React.FC<Props> = ({ title, onClick }) => {
       className={classes.button}
       onClick={onClick}
     >
+      {icon}
       {title}
     </Button>
   );

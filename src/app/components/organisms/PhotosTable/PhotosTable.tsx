@@ -5,7 +5,8 @@ import { Table } from "antd";
 import { useParams, useSearchParams } from "react-router-dom";
 import useTablePagination from "../../../hooks/useTablePagination";
 import { Consts, operations, Types } from "./duck";
-import classes from "./PhotoTable.module.css";
+// eslint-disable-next-line css-modules/no-unused-class
+import classes from "./PhotosTable.module.css";
 
 const PhotosTable: React.FC = () => {
   const { id } = useParams();

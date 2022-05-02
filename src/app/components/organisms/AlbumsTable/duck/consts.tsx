@@ -1,6 +1,13 @@
 import React from "react";
+import {
+  EditOutlined,
+  MoreOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons/lib";
 import { Button, Space } from "antd";
 import { Link } from "react-router-dom";
+// eslint-disable-next-line css-modules/no-unused-class
+import classes from "../AlbumsTable.module.css";
 
 export const columns = (showModal: any) => [
   {
@@ -25,10 +32,16 @@ export const columns = (showModal: any) => [
     render: (text: string, record: any) => (
       <Space size="middle">
         <Button size="small">
-          <Link to={record.id}>Show</Link>
+          <Link to={record.id}>
+            <MoreOutlined className={classes.columnButtonMargin} />
+            Show
+          </Link>
         </Button>
         <Button size="small">
-          <Link to={`${record.id}/edit`}>Edit</Link>
+          <Link to={`${record.id}/edit`}>
+            <EditOutlined className={classes.columnButtonMargin} />
+            Edit
+          </Link>
         </Button>
         <Button
           size="small"
@@ -36,6 +49,7 @@ export const columns = (showModal: any) => [
             showModal(record.id);
           }}
         >
+          <DeleteOutlined />
           Delete
         </Button>
       </Space>
