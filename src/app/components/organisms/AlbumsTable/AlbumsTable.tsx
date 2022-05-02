@@ -3,9 +3,9 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons/lib";
 import { useMutation, useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
-import { notifySuccess } from "../../../../notify";
 import useModal from "../../../hooks/useModal";
 import useTablePagination from "../../../hooks/useTablePagination";
+import { notifySuccess } from "../../notify";
 import { operations, Types, Consts, Utils } from "./duck";
 // eslint-disable-next-line css-modules/no-unused-class
 import classes from "./AlbumsTable.module.css";

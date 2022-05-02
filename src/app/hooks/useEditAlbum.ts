@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-non-null-assertion: 0 */
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { notifySuccess } from "../../notify";
+import { notifySuccess } from "../components/notify";
 import {
   operations as albumOperations,
   Types as albumTypes,

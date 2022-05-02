@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { notifyError } from "../../../../notify";
 import DateInput from "../../molecules/DateInput";
+import { notifyError } from "../../notify";
 import classes from "./DateRangeInput.module.css";
 
 interface Props {

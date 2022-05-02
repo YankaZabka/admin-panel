@@ -3,7 +3,7 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons/lib";
 import { useMutation, useQuery } from "@apollo/client";
 import { Button, Col, Form, Input, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
-import { notifySuccess } from "../../../../../notify";
+import { notifySuccess } from "../../../notify";
 import { operations, Types, Constants } from "./duck";
 import classes from "./CreateForm.module.css";
 
