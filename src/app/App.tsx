@@ -9,9 +9,8 @@ import Footer from "./components/molecules/Footer/Footer";
 import AlbumShowPage from "./components/organisms/AlbumShowPage";
 import AlbumsTable from "./components/organisms/AlbumsTable/index";
 import Header from "./components/organisms/Header/Header";
-import PhotoInfo from "./components/organisms/PhotoInfo";
-import PhotosTable from "./components/organisms/PhotosTable";
 import WelcomePage from "./components/organisms/WelcomePage";
+import AlbumsPage from "./components/pages/AlbumsPage/AlbumsPage";
 import CreateFormPage from "./components/pages/CreateFormPage";
 import DateRangePage from "./components/pages/DateRangePage/DateRangePage";
 import EditFormPage from "./components/pages/EditFormPage";
@@ -53,13 +52,17 @@ const App: React.FC = () => {
                 <Route path="/" element={<MainPage />}>
                   <Route index element={<WelcomePage />} />
                   <Route path="dateRange" element={<DateRangePage />} />
-                  <Route path="albums" element={<AlbumsTable />} />
-                  <Route path="albums/create" element={<CreateFormPage />} />
-                  <Route path="albums/:id" element={<AlbumShowPage />}>
-                    <Route path="photos" element={<PhotosTable />} />
-                    <Route path="photos/:id" element={<PhotoInfo />} />
-                  </Route>
-                  <Route path="albums/:id/edit" element={<EditFormPage />} />
+                  <Route
+                    path="albums/*"
+                    element={
+                      <AlbumsPage
+                        table={<AlbumsTable />}
+                        createForm={<CreateFormPage />}
+                        editForm={<EditFormPage />}
+                        showPage={<AlbumShowPage />}
+                      />
+                    }
+                  />
                 </Route>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<NotFoundPage />} />
