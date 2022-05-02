@@ -3,7 +3,7 @@ import {
   HomeOutlined,
   PictureOutlined,
   CalendarOutlined,
-  LoginOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons/lib";
 import { PageHeader } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                 title="Log Out"
                 key="4"
                 onClick={onLogout}
-                icon={<LoginOutlined />}
+                icon={<LogoutOutlined />}
               />,
             ]
           : null
