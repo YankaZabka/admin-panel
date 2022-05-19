@@ -18,8 +18,9 @@ const WelcomePage: React.FC = () => {
           Welcome to Admin-panel!
         </Text>
         <Text fontSize="xl" fontWeight="bold" as="em" align="center">
-          You can browse through &apos;Albums&apos; page Feel free to use
-          navigation buttons on the top of our site
+          You can browse through &apos;Albums&apos; page.
+          <br />
+          Feel free to use navigation buttons on the top of our site
         </Text>
       </VStack>
     </Flex>
