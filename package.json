@@ -27,7 +27,7 @@
     "@chakra-ui/react": "1.8.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@hookform/resolvers": "2.8.8",
+    "@hookform/resolvers": "^2.8.10",
     "@types/react-datepicker": "^4.4.1",
     "@types/react-transition-group": "^4.4.4",
     "antd": "^4.19.5",
@@ -43,7 +43,7 @@
     "react-router-dom": "6.0.1",
     "react-toastify": "^8.2.0",
     "react-transition-group": "^4.4.2",
-    "yup": "0.32.11"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.3",
