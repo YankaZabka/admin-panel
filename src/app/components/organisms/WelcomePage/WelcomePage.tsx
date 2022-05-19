@@ -1,25 +1,28 @@
 import React from "react";
-import { Card, Col, Row, Typography } from "antd";
-import classes from "./WelcomePage.module.css";
-
-const { Text, Title } = Typography;
+import { Flex, useColorModeValue, VStack, Text } from "@chakra-ui/react";
 
 const WelcomePage: React.FC = () => {
+  const bgColor = useColorModeValue("gray.100", "gray.700");
+
   return (
-    <Row>
-      <Col span={24} className={classes.column}>
-        <Card className={classes.card}>
-          <div className={classes.titleContainer}>
-            <Title level={3}>Welcome to Admin-panel!</Title>
-          </div>
-          <Text italic>You can browse through &apos;Albums&apos; page</Text>
-          <br />
-          <Text italic>
-            Feel free to use navigation buttons on the top of our site
-          </Text>
-        </Card>
-      </Col>
-    </Row>
+    <Flex flex="auto" alignItems="center" justifyContent="center">
+      <VStack
+        direction="column"
+        bg={bgColor}
+        p={12}
+        rounded={6}
+        maxW="600px"
+        spacing={8}
+      >
+        <Text fontSize="4xl" fontWeight="bold" align="center">
+          Welcome to Admin-panel!
+        </Text>
+        <Text fontSize="xl" fontWeight="bold" as="em" align="center">
+          You can browse through &apos;Albums&apos; page Feel free to use
+          navigation buttons on the top of our site
+        </Text>
+      </VStack>
+    </Flex>
   );
 };
 
