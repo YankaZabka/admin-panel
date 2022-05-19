@@ -1,14 +1,18 @@
 import React from "react";
-import { Layout } from "antd";
+import { Flex, VStack } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-
-const { Content } = Layout;
+import Footer from "../../molecules/Footer";
+import Header from "../Header";
 
 const AdminPage: React.FC = () => {
   return (
-    <Content className="site-layout">
-      <Outlet />
-    </Content>
+    <VStack spacing={0} minH="100vh">
+      <Header />
+      <Flex flex="auto" alignItems="center" justifyContent="center">
+        <Outlet />
+      </Flex>
+      <Footer />
+    </VStack>
   );
 };
 
