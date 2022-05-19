@@ -1,22 +1,18 @@
 import React from "react";
-import { GithubOutlined } from "@ant-design/icons/lib";
-import { Layout, Typography } from "antd";
-import classes from "./Footer.module.css";
-
-const { Footer: AntDFooter } = Layout;
-const { Text, Link } = Typography;
+import { Center, useColorModeValue, Text, Link } from "@chakra-ui/react";
 
 const Footer: React.FC = () => {
+  const bgColor = useColorModeValue("gray.100", "gray.700");
+
   return (
-    <AntDFooter className={classes.footer}>
-      <Text strong>
+    <Center p={4} w="100%" bg={bgColor}>
+      <Text fontSize="lg">
         Admin Panel ©2022 Created by{" "}
-        <Link href="https://github.com/YankaZabka">
+        <Link color="teal.500" href="https://github.com/YankaZabka" isExternal>
           YankaZabka
-          <GithubOutlined className={classes.iconMargin} />
         </Link>
       </Text>
-    </AntDFooter>
+    </Center>
   );
 };
 
