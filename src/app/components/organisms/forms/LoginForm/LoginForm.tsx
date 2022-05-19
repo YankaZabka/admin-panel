@@ -1,20 +1,43 @@
 import React from "react";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { LoginOutlined } from "@ant-design/icons/lib";
 import { useQuery } from "@apollo/client";
-import { Button, Form, Input, Spin, Col, Row } from "antd";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Button,
+  Input,
+  useColorMode,
+} from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as yup from "yup";
 import useAuth from "../../../../hooks/useAuth";
 import { notifyError } from "../../../notify";
 import { operations, Types } from "./duck";
-import classes from "./LoginForm.module.css";
 
 interface FormValues {
   email: string;
   password: string;
 }
 
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .required("This is a required field!")
+    .email("Please enter a valid email"),
+  password: yup.string().required("This is a required field!"),
+});
+
 const LoginForm: React.FC = () => {
-  const [form] = Form.useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
+  const { toggleColorMode } = useColorMode();
   const auth: any = useAuth();
 
   const { data, loading } = useQuery<
@@ -22,18 +45,8 @@ const LoginForm: React.FC = () => {
     Types.GetUsersUsernamesQueryVariables
   >(operations.getUsersUsernames);
 
-  if (!data || loading) {
-    return (
-      <Row justify="center">
-        <Col>
-          <Spin size="large" />
-        </Col>
-      </Row>
-    );
-  }
-
-  const onFinish = (values: any) => {
-    const emails = data.users?.data?.map((item) => {
+  const onFinish: SubmitHandler<FormValues> = (values: any) => {
+    const emails = data?.users?.data?.map((item) => {
       return item?.email;
     });
 
@@ -45,52 +58,56 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <Form
-      name="normal_login"
-      form={form}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="email"
-        rules={[
-          { required: true, message: "Please input your Username!" },
-          {
-            type: "email",
-            message: "Please enter a valid email",
-          },
-        ]}
-      >
-        <Input
-          disabled={loading}
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
-        />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please input your Password!" }]}
-      >
-        <Input.Password
-          disabled={loading}
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-
-      <Form.Item>
-        <Button
-          disabled={loading}
-          type="primary"
-          htmlType="submit"
-          className={classes.logInButton}
+    <>
+      <Heading>Log In</Heading>
+      <form onSubmit={handleSubmit(onFinish)}>
+        <FormControl
+          isDisabled={!data || loading}
+          mb={3}
+          isInvalid={!!errors.email}
         >
-          Log in
-          <LoginOutlined />
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            placeholder="Enter your email"
+            id="email"
+            mb={3}
+            type="email"
+            {...register("email")}
+          />
+          <FormErrorMessage>
+            {errors.email && errors.email.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl
+          isDisabled={!data || loading}
+          mb={3}
+          isInvalid={!!errors.password}
+        >
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            placeholder="*******"
+            id="password"
+            mb={3}
+            type="password"
+            {...register("password")}
+          />
+          <FormErrorMessage>
+            {errors.password && errors.password.message}
+          </FormErrorMessage>
+        </FormControl>
+        <Button
+          colorScheme="teal"
+          w="100%"
+          isLoading={!data || loading || isSubmitting}
+          type="submit"
+        >
+          Log In
         </Button>
-      </Form.Item>
-    </Form>
+      </form>
+      <Button onClick={toggleColorMode} w="100%">
+        Toggle color mode
+      </Button>
+    </>
   );
 };
 
